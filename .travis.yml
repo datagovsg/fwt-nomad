@@ -1,0 +1,38 @@
+language: bash
+
+env:
+  global:
+  - IMAGE_NAME=$DOCKER_REGISTRY/l/lingest-fwt-nomad
+
+matrix:
+  include:
+  - services: docker
+
+before_script:
+- set -e
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" "$DOCKER_REGISTRY"
+
+script:
+- docker build . -t "$IMAGE_NAME"
+
+after_script:
+- docker run --rm --it "$IMAGE_NAME" sh -c "fwt --version && nomad --version"
+
+after_success:
+- |
+  if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+    docker push "$IMAGE_NAME"
+
+    if [ -n "$TRAVIS_TAG" ]; then
+      docker tag $IMAGE_NAME $IMAGE_NAME:${TRAVIS_TAG}
+      docker push $IMAGE_NAME:${TRAVIS_TAG}
+    fi
+  fi
+
+branches:
+  only:
+  - master
+  - /^v\d+\.\d+\.\d+(-\S*)?$/
+
+notifications:
+  email: false
