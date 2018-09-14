@@ -13,6 +13,7 @@ RUN apt-get update \
     && unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/local/bin/ \
     && chmod +x /usr/local/bin/nomad \
     && rm nomad_${NOMAD_VERSION}_linux_amd64.zip \
+    && curl https://rclone.org/install.sh | bash \
     && apt-get remove -y wget unzip ca-certificates \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*

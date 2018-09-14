@@ -16,7 +16,11 @@ script:
 - docker build . -t "$IMAGE_NAME"
 
 after_script:
-- docker run --rm -t "$IMAGE_NAME" sh -c "fwt --version && nomad --version"
+- |
+  docker run --rm -t "$IMAGE_NAME" bash -c \
+    "fwt --version \
+      && nomad --version \
+      && rclone --version"
 
 after_success:
 - |
