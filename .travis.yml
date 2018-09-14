@@ -2,7 +2,7 @@ language: bash
 
 env:
   global:
-  - IMAGE_NAME=datagovsg/fwt-nomad
+  - IMAGE_NAME=$DOCKER_USERNAME/fwt-addons
 
 matrix:
   include:
