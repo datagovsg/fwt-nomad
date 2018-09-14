@@ -7,3 +7,4 @@ executable, and other executables add-ons for utility purposes.
 Currently it has the following add-ons executables:
 
 - [`nomad`](https://www.nomadproject.io/)
+- [`rclone`](https://rclone.org/)
