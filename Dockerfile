@@ -10,7 +10,7 @@ COPY --from=fwt /usr/local/bin/fwt /usr/local/bin/fwt
 
 RUN set -e \
     && apt-get update \
-    && apt-get install -y --no-install-recommends curl unzip ca-certificates \
+    && apt-get install -y --no-install-recommends curl unzip \
     awscli \
     && curl -O https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
     && unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/local/bin/ \
@@ -21,6 +21,6 @@ RUN set -e \
     && mv rclone-v${RCLONE_VERSION}-linux-amd64/rclone /usr/local/bin/ \
     && chmod +x /usr/local/bin/rclone \
     && rm -rf rclone-v${RCLONE_VERSION}-linux-amd64* \
-    && apt-get remove -y wget unzip ca-certificates \
+    && apt-get remove -y curl unzip \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
