@@ -20,7 +20,8 @@ after_script:
   docker run --rm -t "$IMAGE_NAME" bash -c \
     "fwt --version \
       && nomad --version \
-      && rclone --version"
+      && rclone --version \
+      && aws --version"
 
 after_success:
 - |
