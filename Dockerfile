@@ -11,7 +11,7 @@ COPY --from=fwt /usr/local/bin/fwt /usr/local/bin/fwt
 RUN set -e \
     && apt-get update \
     && apt-get install -y --no-install-recommends curl unzip ca-certificates \
-    && awscli \
+    awscli \
     && curl -O https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
     && unzip nomad_${NOMAD_VERSION}_linux_amd64.zip -d /usr/local/bin/ \
     && chmod +x /usr/local/bin/nomad \
