@@ -1,9 +1,9 @@
-FROM guangie88/rs-filewatch-trigger:v0.1.1 as fwt
+FROM guangie88/rs-filewatch-trigger:v0.2.0 as fwt
 
 # unfortunately Nomad is not fully statically linked, requires libc
 FROM ubuntu:bionic
 
-ARG NOMAD_VERSION="0.8.4"
+ARG NOMAD_VERSION="0.8.6"
 ARG RCLONE_VERSION="1.43.1"
 
 COPY --from=fwt /usr/local/bin/fwt /usr/local/bin/fwt
