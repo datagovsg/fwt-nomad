@@ -1,4 +1,4 @@
-FROM guangie88/rs-filewatch-trigger:v0.2.0 as fwt
+FROM guangie88/rs-filewatch-trigger:v0.2.1 as fwt
 
 # unfortunately Nomad is not fully statically linked, requires libc
 FROM ubuntu:bionic
